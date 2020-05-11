@@ -117,5 +117,8 @@ https://wireframe.cc/pro/pp/241e1bf1c341918
 https://wireframe.cc/pro/pp/c0c8def99341931
 
 ## Code Snippet
-
+axios.get('https://opentdb.com/api.php?amount=10&category=23')
+  .then((res) => {
+  console.log(res)
+  })
 
