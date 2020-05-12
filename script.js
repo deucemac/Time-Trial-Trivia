@@ -10,6 +10,7 @@ async function searchTrivia() {
   let wrongAnswer3 = data[0].incorrect_answers[2]   
   // console.log('3rd wrong answer ' + wrongAnswer3)
   let setOfOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3]
+  setOfOptions = shuffle(setOfOptions)
   console.log(setOfOptions)
   
   let divContainer = document.createElement('div')
@@ -49,15 +50,23 @@ async function searchTrivia() {
 //   document.body.style.backgroundSize = 'cover';
 // }
 
-// function presentQandA() {
+function shuffle(arr) {
+  let shuffleStart = arr.length
+  let tempVal, index
   
-//   let divContainer = document.createElement('div')
-//   divContainer.className = "questions"
-//   console.log(divContainer.innerHTML = `<h1>${data[0].question}<p>${setOfOptions[0]}</p><p>${setOfOptions[1]}</p><p>${setOfOptions[2]}</p><p>${setOfOptions[3]}</p></h1>`)
+  while (shuffleStart > 0) {
+    index = Math.floor(Math.random() * 4)
+    
+    shuffleStart--
   
+    tempVal = arr[shuffleStart]
+    arr[shuffleStart] = arr[index]
+    arr[index] = tempVal
+  }
+  return arr
+}
 
-// }
-// presentQandA()
+
 
 
 
