@@ -78,6 +78,7 @@ async function playGame() {
   let q = data.length
   
   while (q > 0) {
+    //add function/method that clears the page
     q--
     
   let correctAnswer = data[q].correct_answer
@@ -91,9 +92,27 @@ async function playGame() {
   divContainer.className = "questions"
   body.appendChild('.questions')
   divContainer.innerHTML = `<h1>${data[q].question}<p>${setOfOptions[0]}</p><p>${setOfOptions[1]}</p><p>${setOfOptions[2]}</p><p>${setOfOptions[3]}</p></h1>`
+  //might have to label class with your <p>'s
   
-      if ()
-  
+  let selectOptions = document.querySelectorAll('p')
+    selectOptions.forEach(option => {
+      option.addEventListener('click', selectedChoice)
+
+    })
+    
+    function selectedChoice(choice) {
+      if (choice.target === correctAnswer) {
+      removeElements() // may need something in parenthesis
+      let rightChoice = document.createElement('div').className = "rightAns"
+      rightChoice.innerHTML = 'Right Answer'
+      document.body.appendChild(rightChoice) //or .querySelector('body') 
+      } else {
+        removeElements()
+        let wrongChoice = document.createElement('div').className = "wrongAns"
+        wrongChoice.innerHTML = 'Wrong Answer'
+        document.body.appendChild(wrongChoice)
+      }
+  }
   
   
   }
