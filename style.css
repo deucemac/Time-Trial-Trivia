@@ -1,0 +1,40 @@
+body {
+  background-image: url('https://i.pinimg.com/originals/d5/12/0d/d5120db87d0baff6c4bccf927b9310cd.jpg');
+  background-size: cover;
+}
+
+
+.view-page {
+  min-height: 100vh;
+  text-align: center;
+  font-family: 'Balsamiq Sans', cursive, serif;
+  /* align-content: center; */
+}
+
+header {
+  height: 100px;
+}
+
+.game-name {
+  margin: 100px;
+  text-align: center;
+}
+
+.name {
+  margin: 100px;
+}
+
+.submit {
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
