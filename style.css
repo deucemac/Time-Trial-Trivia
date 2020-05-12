@@ -37,6 +37,36 @@ header {
   margin: 0 auto;
 }
 
+.clock {
+  margin: 100px; 
+  /* margin: 0 auto; */
+  margin-left: 790px;
+  background-color: white;
+  height: 100px;
+  width: 100px;
+  border: 4px solid black;
+  border-radius: 50%;
+  position: relative;
+}
+
+.line {
+  background-color: black;
+  height: 48px;
+  width: 3px;
+  position: absolute;
+  top: 0px;
+  left: 50px;
+}
+
+.line2 {
+  background-color: black;
+  height: 3px;
+  width: 48px;
+  position: absolute;
+  left: 50px;
+  top: 48px;
+}
+
 
 
 
