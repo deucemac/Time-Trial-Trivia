@@ -1,6 +1,10 @@
-async function searchTrivia() {
+async function triviaQuestions() {
   let trivia = await axios.get(`https://opentdb.com/api.php?amount=1&type=multiple`)
   let data = trivia.data.results
+  
+  // for (let i = 0; i < data.length; i++) {}
+  
+
   console.log(data)
   let correctAnswer = data[0].correct_answer
   console.log(correctAnswer)
@@ -8,17 +12,18 @@ async function searchTrivia() {
   let wrongAnswer1 = data[0].incorrect_answers[0]
   let wrongAnswer2 = data[0].incorrect_answers[1]
   let wrongAnswer3 = data[0].incorrect_answers[2]   
-  // console.log('3rd wrong answer ' + wrongAnswer3)
+  
   let setOfOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3]
   setOfOptions = shuffle(setOfOptions)
   console.log(setOfOptions)
   
   let divContainer = document.createElement('div')
   divContainer.className = "questions"
+  // body.appendChild('.questions')
   console.log(divContainer.innerHTML = `<h1>${data[0].question}<p>${setOfOptions[0]}</p><p>${setOfOptions[1]}</p><p>${setOfOptions[2]}</p><p>${setOfOptions[3]}</p></h1>`)
 
 }
- searchTrivia()
+//  triviaQuestions()
 
 // axios.get('https://opentdb.com/api.php?amount=10&category=23')
 //   .then((res) => {
@@ -66,13 +71,45 @@ function shuffle(arr) {
   return arr
 }
 
+async function playGame() {
+  let trivia = await axios.get(`https://opentdb.com/api.php?amount=7&type=multiple`)
+  let data = trivia.data.results
+
+  let q = data.length
+  
+  while (q > 0) {
+    q--
+    
+  let correctAnswer = data[q].correct_answer
+  let wrongAnswer1 = data[q].incorrect_answers[0]
+  let wrongAnswer2 = data[q].incorrect_answers[1]
+  let wrongAnswer3 = data[q].incorrect_answers[2]   
+  let setOfOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3]
+  setOfOptions = shuffle(setOfOptions)
+    
+  let divContainer = document.createElement('div')
+  divContainer.className = "questions"
+  body.appendChild('.questions')
+  divContainer.innerHTML = `<h1>${data[q].question}<p>${setOfOptions[0]}</p><p>${setOfOptions[1]}</p><p>${setOfOptions[2]}</p><p>${setOfOptions[3]}</p></h1>`
+  
+      if ()
+  
+  
+  
+  }
 
 
 
 
 
-
-
+}
+    
+    
+    
+    
+    
+    
+  
 
 
 
