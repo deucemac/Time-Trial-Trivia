@@ -18,14 +18,23 @@ header {
 .game-name {
   margin: 100px;
   text-align: center;
+  font-size: 50px;
 }
 
 .name {
   margin: 100px;
+  margin-bottom: 125px;
 }
 
 .submit {
   cursor: pointer;
+}
+
+.whatToDo {
+  font-size: 25px;
+  background-color: rgba(91, 50, 41, .5);
+  width: 40%;
+  margin: 0 auto;
 }
 
 
