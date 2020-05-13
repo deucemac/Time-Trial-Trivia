@@ -46,10 +46,13 @@ let index = 0
 
 
 
-function removeElements() {
-  let allElements = document.querySelector('.view-page')
-  allElements.remove()
-  document.body.style.backgroundSize = 'cover';
+ function removeElements() {
+//   let allElements = document.querySelector('.view-page')
+//   allElements.remove()
+//   document.body.style.backgroundSize = 'cover';
+     let elementsToEmpty = document.querySelector('.questions')
+   elementsToEmpty.remove()
+   document.querySelector('h1').remove()
 }
 
 function shuffle(arr) {
@@ -79,6 +82,7 @@ async function getData() {
 let container = document.querySelector('.container') //perhaps make this global
 
 async function playGame() {
+  
  
   let correctAnswer = data[index].correct_answer
   let wrongAnswer1 = data[index].incorrect_answers[0]
@@ -95,13 +99,14 @@ async function playGame() {
   let selectOptions = document.querySelectorAll('p')
   selectOptions.forEach(option => {
     option.addEventListener('click', (e) => {
+    removeElements()
     console.log(correctAnswer)
-      // removeElements()
-    console.log(selectedChoice(correctAnswer, e.target.innerText))
+    selectedChoice(correctAnswer, e.target.innerText)
+    
     playGame()
-    })
-
   })
+  
+})
 index += 1
 
 }
@@ -111,22 +116,26 @@ const button = document.querySelector('.submit')
 button.addEventListener('click', function (e) {
   name = input.value
   getData()
+  document.querySelector('.name').remove()
 })
 
 function selectedChoice(correctAnswer, usersChoice) {
-  if (usersChoice.target === correctAnswer) {
+  if (usersChoice === correctAnswer) {
 
     userScore += 1
     let choice = document.createElement('h1')
+    choice.classList.add('remove')
     choice.innerHTML = 'Right Answer'
-    return container.appendChild(choice)
+    container.appendChild(choice)
   } else {
     let wrongChoice = document.createElement('h1')
     wrongChoice.innerHTML = 'WrongAnswer'
-    return container.appendChild(wrongChoice)
+    wrongChoice.classList.add('remove')
+    container.appendChild(wrongChoice)
     
   }
 }
+
 
 
   //still need score tracker and way to decide winner

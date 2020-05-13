@@ -38,9 +38,9 @@ header {
 }
 
 .clock {
-  margin: 100px; 
-  /* margin: 0 auto; */
-  margin-left: 790px;
+  /* margin: 100px;  */
+  margin: 0 auto;
+ 
   background-color: white;
   height: 100px;
   width: 100px;
