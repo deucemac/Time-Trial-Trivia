@@ -113,6 +113,12 @@ index += 1
 
 }
 
+let restartButton = document.querySelector('.restart') //This is a major hiccup
+restartButton.addEventListener('click', function (e) {
+  getData()
+})
+
+
 const input = document.getElementById('fname')
 const button = document.querySelector('.submit')
 button.addEventListener('click', function (e) {
@@ -139,24 +145,20 @@ function selectedChoice(correctAnswer, usersChoice) {
   if (index > 6) {
     if (userScore >= 4) {
       let youWin = document.createElement('h1')
-      youWin.innerHTML = 'Congrats You\'re Awesome'
+      youWin.innerHTML = 'Congrats You Win'
       response.appendChild(youWin)
     } else {
       let youWin = document.createElement('h1')
-      youWin.innerHTML = 'Not enough to Win'
+      youWin.innerHTML = 'Not enough to Win, under 50%'
       response.appendChild(youWin)
     }
 
+  }
 }
 
 
 
-
-}
-
-
-
-  //still need score tracker and way to decide winner
+  
 
 
 
