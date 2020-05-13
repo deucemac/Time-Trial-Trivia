@@ -3,6 +3,8 @@ let name;
 let userScore = 0
 let index = 0
 
+
+
 // async function triviaQuestions() {
 //   let trivia = await axios.get(`https://opentdb.com/api.php?amount=1&type=multiple`)
 //   let data = trivia.data.results
@@ -122,7 +124,6 @@ button.addEventListener('click', function (e) {
 
 function selectedChoice(correctAnswer, usersChoice) {
   if (usersChoice === correctAnswer) {
-
     userScore += 1
     let choice = document.createElement('h1')
     choice.classList.add('remove')
@@ -130,11 +131,27 @@ function selectedChoice(correctAnswer, usersChoice) {
     response.appendChild(choice)
   } else {
     let wrongChoice = document.createElement('h1')
-    wrongChoice.innerHTML = 'WrongAnswer'
+    wrongChoice.innerHTML = `Wrong Answer, correct answer was ${correctAnswer}`
     wrongChoice.classList.add('remove')
     response.appendChild(wrongChoice)
-    
   }
+
+  if (index > 6) {
+    if (userScore >= 4) {
+      let youWin = document.createElement('h1')
+      youWin.innerHTML = 'Congrats You\'re Awesome'
+      response.appendChild(youWin)
+    } else {
+      let youWin = document.createElement('h1')
+      youWin.innerHTML = 'Not enough to Win'
+      response.appendChild(youWin)
+    }
+
+}
+
+
+
+
 }
 
 
