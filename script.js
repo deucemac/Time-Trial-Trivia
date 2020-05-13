@@ -115,7 +115,7 @@ index += 1
 
 let restartButton = document.querySelector('.restart') //This is a major hiccup
 restartButton.addEventListener('click', function (e) {
-  getData()
+  window.location.reload()
 })
 
 
