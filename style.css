@@ -8,7 +8,6 @@ body {
   min-height: 100vh;
   text-align: center;
   font-family: 'Balsamiq Sans', cursive, serif;
-  /* align-content: center; */
 }
 
 header {
@@ -38,24 +37,32 @@ header {
 }
 
 .container {
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  display: flex;
+  justify-content: center;
+  /* flex-wrap: nowrap;
+  /* flex-direction: row; */
+  /*justify-content: center;
+  width: 300px;
+  text-align: center; */
+}
+.questions {
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 80%;
 }
 
-/* .trivia-question {
-  width: 60%;
+.trivia-question {
+  width: 80%;
 }
 
 .results {
   width: 50%;
-} */
+}  
+
 .clock {
-  /* margin: 100px;  */
   margin: 0 auto;
- 
   background-color: white;
   height: 100px;
   width: 100px;
