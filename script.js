@@ -76,16 +76,16 @@ async function getData() {
 
 
 
+let container = document.querySelector('.container') //perhaps make this global
 
 async function playGame() {
-
+ 
   let correctAnswer = data[index].correct_answer
   let wrongAnswer1 = data[index].incorrect_answers[0]
   let wrongAnswer2 = data[index].incorrect_answers[1]
   let wrongAnswer3 = data[index].incorrect_answers[2]
   let setOfOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3]
   setOfOptions = shuffle(setOfOptions)
-  let container = document.querySelector('.container')
   let divContainer = document.createElement('div')
   divContainer.className = "questions"
   container.appendChild(divContainer)
@@ -95,8 +95,10 @@ async function playGame() {
   let selectOptions = document.querySelectorAll('p')
   selectOptions.forEach(option => {
     option.addEventListener('click', (e) => {
+    console.log(correctAnswer)
+      // removeElements()
+    console.log(selectedChoice(correctAnswer, e.target.innerText))
     playGame()
-      // selectedChoice(correctAnswer, e.target.innerText)
     })
 
   })
@@ -111,20 +113,20 @@ button.addEventListener('click', function (e) {
   getData()
 })
 
-// function selectedChoice(correctAnswer, usersChoice) {
-//   if (choice.target === correctAnswer) {
-//     userScore += 1
-//     removeElements() // may need something in parenthesis
-//     let rightChoice = document.createElement('div').className = "rightAns"
-//     rightChoice.innerHTML = 'Right Answer'
-//     document.body.appendChild(rightChoice) //or .querySelector('body') 
-//   } else {
-//     removeElements()
-//     let wrongChoice = document.createElement('div').className = "wrongAns"
-//     wrongChoice.innerHTML = 'Wrong Answer'
-//     document.body.appendChild(wrongChoice)
-//   }
-// }
+function selectedChoice(correctAnswer, usersChoice) {
+  if (usersChoice.target === correctAnswer) {
+
+    userScore += 1
+    let choice = document.createElement('h1')
+    choice.innerHTML = 'Right Answer'
+    return container.appendChild(choice)
+  } else {
+    let wrongChoice = document.createElement('h1')
+    wrongChoice.innerHTML = 'WrongAnswer'
+    return container.appendChild(wrongChoice)
+    
+  }
+}
 
 
   //still need score tracker and way to decide winner
