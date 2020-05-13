@@ -74,7 +74,8 @@ function shuffle(arr) {
 async function getData() {
   let trivia = await axios.get(`https://opentdb.com/api.php?amount=7&type=multiple`)
   data = trivia.data.results
-  playGame()
+  // playGame()
+  setTimeout(playGame, 1000)
 }
 
 
@@ -82,7 +83,6 @@ async function getData() {
 let container = document.querySelector('.container') //perhaps make this global
 
 async function playGame() {
-  
  
   let correctAnswer = data[index].correct_answer
   let wrongAnswer1 = data[index].incorrect_answers[0]
@@ -93,7 +93,7 @@ async function playGame() {
   let divContainer = document.createElement('div')
   divContainer.className = "questions"
   container.appendChild(divContainer)
-  divContainer.innerHTML = `<h1>${data[index].question}<p>${setOfOptions[0]}</p><p>${setOfOptions[1]}</p><p>${setOfOptions[2]}</p><p>${setOfOptions[3]}</p></h1>`
+  divContainer.innerHTML = `<h1 class="trivia-question">${data[index].question}</h1><p class="results">${setOfOptions[0]}</p><p class="results">${setOfOptions[1]}</p><p class="results">${setOfOptions[2]}</p><p class="results">${setOfOptions[3]}</p>`
   //might have to label class with your <p>'s
 
   let selectOptions = document.querySelectorAll('p')
@@ -118,6 +118,7 @@ button.addEventListener('click', function (e) {
   getData()
   document.querySelector('.name').remove()
 })
+
 
 function selectedChoice(correctAnswer, usersChoice) {
   if (usersChoice === correctAnswer) {
