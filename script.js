@@ -81,7 +81,7 @@ async function getData() {
 
 
 let container = document.querySelector('.container') //perhaps make this global
-
+let response = document.querySelector('.response')
 async function playGame() {
  
   let correctAnswer = data[index].correct_answer
@@ -127,12 +127,12 @@ function selectedChoice(correctAnswer, usersChoice) {
     let choice = document.createElement('h1')
     choice.classList.add('remove')
     choice.innerHTML = 'Right Answer'
-    container.appendChild(choice)
+    response.appendChild(choice)
   } else {
     let wrongChoice = document.createElement('h1')
     wrongChoice.innerHTML = 'WrongAnswer'
     wrongChoice.classList.add('remove')
-    container.appendChild(wrongChoice)
+    response.appendChild(wrongChoice)
     
   }
 }
