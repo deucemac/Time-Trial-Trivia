@@ -2,7 +2,8 @@ let data;
 let name;
 let userScore = 0
 let index = 0
-
+let easy = false
+let easyData 
 
 
 
@@ -32,27 +33,19 @@ async function getData() {
   let trivia = await axios.get(`https://opentdb.com/api.php?amount=7&type=multiple`)
   // console.log(trivia)
   data = trivia.data.results
-  setTimeout(playGame, 2500)
+  // setTimeout(playGame, 2500)
+console.log(data)
 }
 
 // This is New-------------------------------------------------
 async function getEasyData() {
   let easyTrivia = await axios.get(`https://opentdb.com/api.php?amount=7&difficulty=easy&type=multiple`)
-  data = easyTrivia.data.results
-  setTimeout(playGame, 2500)
+  easyData = easyTrivia.data.results
+  // setTimeout(playGame, 2500)
+console.log(easyData)
 }
 
-function decideQuestion() {
-  flyer.appendChild(movingEl) //this might be the best placement for this action
-  console.log(movingEl)
-  if (movingEl.target === true) {
-    console.log(`easy question`)
-    getEasyData()
-  } else {
-    console.log(`other question`)
-    getData()
-  }
-}
+
 
 
 //-------------------------------------------------------------
@@ -64,32 +57,58 @@ let flyer = document.querySelector('.flying')
 
 async function playGame() { //see how placing index as parameter changes things, consider retrying difficult as parameter too
   // difficulty = ['hard', 'medium', 'easy']  
-  let correctAnswer = data[index].correct_answer
-  let wrongAnswer1 = data[index].incorrect_answers[0]
-  let wrongAnswer2 = data[index].incorrect_answers[1]
-  let wrongAnswer3 = data[index].incorrect_answers[2]
-  let setOfOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3]
-  setOfOptions = shuffle(setOfOptions)
-  
-  let divContainer = document.createElement('div')
-  divContainer.className = "questions"
-  container.appendChild(divContainer)
-  divContainer.innerHTML = `<h1 class="trivia-question">${data[index].question}</h1><p class="results">${setOfOptions[0]}</p><p class="results">${setOfOptions[1]}</p><p class="results">${setOfOptions[2]}</p><p class="results">${setOfOptions[3]}</p>`
-  //might have to label class with your <p>'s
+  if (easy === true) {
 
-  let selectOptions = document.querySelectorAll('p')
+  
+    let correctAnswer = easyData[index].correct_answer
+    let wrongAnswer1 = easyData[index].incorrect_answers[0]
+    let wrongAnswer2 = easyData[index].incorrect_answers[1]
+    let wrongAnswer3 = easyData[index].incorrect_answers[2]
+    let setOfOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3]
+    setOfOptions = shuffle(setOfOptions)
+  
+    let divContainer = document.createElement('div')
+    divContainer.className = "questions"
+    container.appendChild(divContainer)
+    divContainer.innerHTML = `<h1 class="trivia-question">${easyData[index].question}</h1><p class="results">${setOfOptions[0]}</p><p class="results">${setOfOptions[1]}</p><p class="results">${setOfOptions[2]}</p><p class="results">${setOfOptions[3]}</p>`
+    //might have to label class with your <p>'s
+    let selectOptions = document.querySelectorAll('p')
+    selectOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+      removeElements()
+      console.log(correctAnswer)
+      selectedChoice(correctAnswer, e.target.innerText) 
+      easyButton()
+    })
+  })
+  
+  } else {
+    let correctAnswer = data[index].correct_answer
+    let wrongAnswer1 = data[index].incorrect_answers[0]
+    let wrongAnswer2 = data[index].incorrect_answers[1]
+    let wrongAnswer3 = data[index].incorrect_answers[2]
+    let setOfOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3]
+    setOfOptions = shuffle(setOfOptions)
+  
+    let divContainer = document.createElement('div')
+    divContainer.className = "questions"
+    container.appendChild(divContainer)
+    divContainer.innerHTML = `<h1 class="trivia-question">${data[index].question}</h1><p class="results">${setOfOptions[0]}</p><p class="results">${setOfOptions[1]}</p><p class="results">${setOfOptions[2]}</p><p class="results">${setOfOptions[3]}</p>`
+  
+    let selectOptions = document.querySelectorAll('p')
   selectOptions.forEach(option => {
     option.addEventListener('click', (e) => {
     removeElements()
     console.log(correctAnswer)
     selectedChoice(correctAnswer, e.target.innerText) 
-    //playGame(data[index], difficulty[Math.floor(Math.random() * 3)]) //not sure if it should be data[index] or index
-    decideQuestion()  //playGame() //this should be decideQuestions() instead of 
+    easyButton()
   })
-  
 })
+}
+  
+  
 index += 1
-
+easy = false
 }
  
 
@@ -104,10 +123,32 @@ const button = document.querySelector('.submit')
 button.addEventListener('click', function (e) {
   name = input.value
   document.querySelector('.name').remove()
-  // flyer.appendChild(movingEl)
-  decideQuestion()
+  getData()
+  getEasyData()
+  easyButton()
+  //decideQuestion()
   //getData() //consider removing this temporarily
 })
+
+function easyButton() {
+  let flyZone = document.createElement('div')
+flyZone.classList.add('flying')
+// console.log(flyZone)
+let pTag = document.createElement('p')
+// pTag.className = 'movingEl'
+flyZone.classList.add('movingEl','animate__animated', 'animate__bounceInLeft', 'animate__bounceOutRight', 'animate__slower', 'animate__repeat-1')
+// console.log(pTag)
+pTag.innerHTML = "EASY"
+  flyZone.appendChild(pTag)
+ document.querySelector('.view-page').append(flyZone) 
+  flyZone.addEventListener('click', () => {
+  easy = true
+})
+  setTimeout(() => {
+    playGame()
+  flyZone.remove()
+  }, 2000)
+}
 
 
 function selectedChoice(correctAnswer, usersChoice) {
@@ -140,16 +181,20 @@ function selectedChoice(correctAnswer, usersChoice) {
 
 // From this point on, we will attempt post mvp code------------------------------------
 
-let movingEl = document.querySelector('.movingEl')
-  movingEl.classList.add('animate__animated', 'animate__bounceInLeft', 'animate__bounceOutRight', 'animate__slower', 'animate__repeat-1')
-movingEl.innerHTML = "EASY"
 
-movingEl.addEventListener('click', removeAnimation)
 
-function removeAnimation() {
-  let removal = document.querySelector('.movingEl')
-  removal.remove()
-}
+
+
+
+//   movingEl.classList.add('animate__animated', 'animate__bounceInLeft', 'animate__bounceOutRight', 'animate__slower', 'animate__repeat-1')
+// movingEl.innerHTML = "EASY"
+
+// movingEl.addEventListener('click', removeAnimation)
+
+// function removeAnimation() {
+//   let removal = document.querySelector('.movingEl')
+//   removal.remove()
+// }
 //----------------------------------------------------------------------------------------------------
 
     
