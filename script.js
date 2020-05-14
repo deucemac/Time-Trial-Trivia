@@ -80,9 +80,23 @@ async function getData() {
   setTimeout(playGame, 2500)
 }
 
+// This is New-------------------------------------------------
+async function getEasyData() {
+  let easyTrivia = await axios.get(`https://opentdb.com/api.php?amount=7&difficulty=easy&type=multiple`)
+  data = easyTrivia.data.results
+}
+
+// function decideQuestion() {
+//   if ()
+// }
+
+
+//-------------------------------------------------------------
+
 // let difficulty = ['hard', 'medium', 'easy'] // maybe take this out
 let container = document.querySelector('.container') //perhaps make this global
 let response = document.querySelector('.response')
+let flyer = document.querySelector('.flying')
 
 async function playGame() { //see how placing index as parameter changes things, consider retrying difficult as parameter too
   // difficulty = ['hard', 'medium', 'easy']  
@@ -115,18 +129,19 @@ index += 1
 }
  
 
-let restartButton = document.querySelector('.restart') //This is a major hiccup
+let restartButton = document.querySelector('.restart') 
 restartButton.addEventListener('click', function (e) {
   window.location.reload()
 })
 
 
-const input = document.getElementById('fname')
+const input = document.getElementById('fname')  //game starts here
 const button = document.querySelector('.submit')
 button.addEventListener('click', function (e) {
   name = input.value
-  getData()
   document.querySelector('.name').remove()
+  flyer.appendChild(movingEl)
+  //getData() //consider removing this temporarily
 })
 
 
@@ -158,17 +173,17 @@ function selectedChoice(correctAnswer, usersChoice) {
   }
 }
 
-// From this point on, we will attempt post mvp code----------------
+// From this point on, we will attempt post mvp code------------------------------------
 
 let movingEl = document.querySelector('.movingEl')
-  movingEl.classList.add('animate__animated', 'animate__bounceInLeft', 'animate__bounceOutRight', 'animate__slow', 'animate__repeat-1')
+  movingEl.classList.add('animate__animated', 'animate__bounceInLeft', 'animate__bounceOutRight', 'animate__slower', 'animate__repeat-2')
 movingEl.innerHTML = "EASY"
 
-  function flyElement() {
-  let parent = document.querySelector('div')
-  parent.appendChild(movingEl)
-}
-flyElement()
+//   function flyElement() {
+//   let parent = document.querySelector('div')
+//   parent.appendChild(movingEl)
+// }
+// flyElement()
 
 movingEl.addEventListener('click', removeAnimation)
 
@@ -177,38 +192,40 @@ function removeAnimation() {
   removal.remove()
 }
 
-async function snagQuestion(e) {
-  if (e.target.matches('.animate__animated')) {
+
+//----------------------------------------------------------------------------------------------------
+// async function snagQuestion(e) {
+//   if (e.target.matches('.animate__animated')) {
     //playGame(data[index], difficulty[2]) //once again, not sure what this first parameter should be
-    let trivia = await axios.get(`https://opentdb.com/api.php?amount=7&difficulty=easy&type=multiple`)
-    data = trivia.data.results
-    let correctAnswer = data[index].correct_answer
-    let wrongAnswer1 = data[index].incorrect_answers[0]
-    let wrongAnswer2 = data[index].incorrect_answers[1]
-    let wrongAnswer3 = data[index].incorrect_answers[2]
-    let setOfOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3]
-    setOfOptions = shuffle(setOfOptions)
+    //let trivia = await axios.get(`https://opentdb.com/api.php?amount=7&difficulty=easy&type=multiple`)
+//     data = trivia.data.results
+//     let correctAnswer = data[index].correct_answer
+//     let wrongAnswer1 = data[index].incorrect_answers[0]
+//     let wrongAnswer2 = data[index].incorrect_answers[1]
+//     let wrongAnswer3 = data[index].incorrect_answers[2]
+//     let setOfOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3]
+//     setOfOptions = shuffle(setOfOptions)
     
-    let divContainer = document.createElement('div')
-    divContainer.className = "questions"
-    container.appendChild(divContainer)
-    divContainer.innerHTML = `<h1 class="trivia-question">${data[index].question}</h1><p class="results">${setOfOptions[0]}</p><p class="results">${setOfOptions[1]}</p><p class="results">${setOfOptions[2]}</p><p class="results">${setOfOptions[3]}</p>`
-    //might have to label class with your <p>'s
+//     let divContainer = document.createElement('div')
+//     divContainer.className = "questions"
+//     container.appendChild(divContainer)
+//     divContainer.innerHTML = `<h1 class="trivia-question">${data[index].question}</h1><p class="results">${setOfOptions[0]}</p><p class="results">${setOfOptions[1]}</p><p class="results">${setOfOptions[2]}</p><p class="results">${setOfOptions[3]}</p>`
+//     //might have to label class with your <p>'s
   
-    let selectOptions = document.querySelectorAll('p')
-    selectOptions.forEach(option => {
-      option.addEventListener('click', (e) => {
-        removeElements()
-        console.log(correctAnswer)
-        selectedChoice(correctAnswer, e.target.innerText)
-        snagQuestion(e)
-      })
-    })
-    index += 1
-  } else { 
-    playGame()
-  }
-}
+//     let selectOptions = document.querySelectorAll('p')
+//     selectOptions.forEach(option => {
+//       option.addEventListener('click', (e) => {
+//         removeElements()
+//         console.log(correctAnswer)
+//         selectedChoice(correctAnswer, e.target.innerText)
+//         snagQuestion(e)
+//       })
+//     })
+//     index += 1
+//   } else { 
+//     playGame()
+//   }
+// }
     
   
   

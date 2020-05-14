@@ -91,11 +91,12 @@ header {
   top: 48px;
 }
 
-/* .movingEl {
+.movingEl {
   cursor: pointer;
   background-color: rgba(142, 137, 100, .7);
   font-size: 25px;
-} */
+  width: 200px;
+}
 
 
 
