@@ -75,23 +75,24 @@ function shuffle(arr) {
 
 async function getData() {
   let trivia = await axios.get(`https://opentdb.com/api.php?amount=7&type=multiple`)
+  // console.log(trivia)
   data = trivia.data.results
-  // playGame()
-  setTimeout(playGame, 1000)
+  setTimeout(playGame, 2500)
 }
 
-
-
+// let difficulty = ['hard', 'medium', 'easy'] // maybe take this out
 let container = document.querySelector('.container') //perhaps make this global
 let response = document.querySelector('.response')
-async function playGame() {
- 
+
+async function playGame() { //see how placing index as parameter changes things, consider retrying difficult as parameter too
+  // difficulty = ['hard', 'medium', 'easy']  
   let correctAnswer = data[index].correct_answer
   let wrongAnswer1 = data[index].incorrect_answers[0]
   let wrongAnswer2 = data[index].incorrect_answers[1]
   let wrongAnswer3 = data[index].incorrect_answers[2]
   let setOfOptions = [correctAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3]
   setOfOptions = shuffle(setOfOptions)
+  
   let divContainer = document.createElement('div')
   divContainer.className = "questions"
   container.appendChild(divContainer)
@@ -103,15 +104,16 @@ async function playGame() {
     option.addEventListener('click', (e) => {
     removeElements()
     console.log(correctAnswer)
-    selectedChoice(correctAnswer, e.target.innerText)
-    
-    playGame()
+    selectedChoice(correctAnswer, e.target.innerText) 
+    //playGame(data[index], difficulty[Math.floor(Math.random() * 3)]) //not sure if it should be data[index] or index
+      playGame()
   })
   
 })
 index += 1
 
 }
+ 
 
 let restartButton = document.querySelector('.restart') //This is a major hiccup
 restartButton.addEventListener('click', function (e) {
@@ -155,6 +157,33 @@ function selectedChoice(correctAnswer, usersChoice) {
 
   }
 }
+
+// From this point on, we will attempt post mvp code----------------
+
+// let movingEl = document.querySelector('.movingEl')
+//   movingEl.classList.add('animate__animated', 'animate__bounceInLeft', 'animate__bounceOutRight', 'animate__slow', 'animate__repeat-1')
+
+// function flyElement() {
+//   let parent = document.querySelector('div')
+//   parent.appendChild(movingEl)
+// }
+// flyElement()
+
+// movingEl.addEventListener('click', removeAnimation)
+
+// function removeAnimation() {
+//   let removal = document.querySelector('.movingEl')
+//   removal.remove()
+// }
+
+// async function snagQuestion(e) {
+//   if (e.target.matches('.animate__animated')) {
+//     playGame(data[index], difficulty[2]) //once again, not sure what this first parameter should be
+//   }
+// }
+
+
+
 
 
 

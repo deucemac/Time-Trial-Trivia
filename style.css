@@ -55,6 +55,7 @@ header {
 
 .trivia-question {
   width: 80%;
+  background-color: rgba(135, 122, 99, .5);
 }
 
 .results {
@@ -89,6 +90,11 @@ header {
   left: 50px;
   top: 48px;
 }
+
+/* .movingEl {
+  cursor: pointer;
+  background-color: rgba(142, 137, 100, .5);
+} */
 
 
 
