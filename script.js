@@ -44,9 +44,12 @@ async function getEasyData() {
 
 function decideQuestion() {
   flyer.appendChild(movingEl) //this might be the best placement for this action
-  if (e.target.matches('.animate__animated')) {
+  console.log(movingEl)
+  if (movingEl.target === true) {
+    console.log(`easy question`)
     getEasyData()
   } else {
+    console.log(`other question`)
     getData()
   }
 }
@@ -141,52 +144,12 @@ let movingEl = document.querySelector('.movingEl')
   movingEl.classList.add('animate__animated', 'animate__bounceInLeft', 'animate__bounceOutRight', 'animate__slower', 'animate__repeat-1')
 movingEl.innerHTML = "EASY"
 
-//   function flyElement() {
-//   let parent = document.querySelector('div')
-//   parent.appendChild(movingEl)
-// }
-// flyElement()
-
 movingEl.addEventListener('click', removeAnimation)
 
 function removeAnimation() {
   let removal = document.querySelector('.movingEl')
   removal.remove()
 }
-
-
 //----------------------------------------------------------------------------------------------------
 
     
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
