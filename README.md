@@ -1,8 +1,8 @@
 # Trivia-Levels
 
-- **App Title**: Time Trial Trivia
-- **App Description**: Time Trial Trivia is an interactive trivia game that forces the user to answer questions of various difficult levels within urgent time constraints.  The user must first test their reflexes to click on moving target objects labeled with the difficulty level of the question. The first target/question labeled "EASY" will flash across the screen quickly, being that it is the most desired question for the user/player to answer.  If the user cannot catch and click the object within the short and immediate time frame presented, the user is presented with a medium or hard question.  The user does not have control over which category they can choose.  The questions must be answered within 12 seconds(giving the user time to speed-Google if necessary). Full rounds consist of 7 question.  If the user does not have score over 50%, they lose.     
-- **API**: The Open Trivia Database API parses out the data similar to the how the app functions.  Open Trivia provides various categories and difficult levels, as well as true/false/multiple choice questions to switch things up for the user.   
+- **App Title**: Snag That Question
+- **App Description**: Time Trial Trivia is an interactive trivia game that forces the user to answer questions of various difficult levels.  The user must test their reflexes to click on the moving target object labeled with the difficulty level of the question. The first target/question labeled "EASY" will flash across the screen quickly, being that it is the most desired question for the user/player to answer.  If the user cannot catch and click the object within the short and immediate time frame presented, the user is presented with a medium or hard question.  The user does not have control over which category they can choose. Full rounds consist of 7 question.  If the user does not have a score over 50%, they lose.     
+- **API**: The Open Trivia Database API parses out the data similar to the how the app functions.  Open Trivia provides various categories and difficult levels, as well as true/false/multiple choice questions. 
 - **API Snippet**: 
 ```JSON
 {
@@ -82,18 +82,17 @@ https://wireframe.cc/pro/pp/241e1bf1c341918
 
 https://wireframe.cc/pro/pp/c0c8def99341931
 
-- **MVP**: A list of features you will need to build in order to meet the Minimum Viable Product. This will be the rubric your project will be graded against.
+- **MVP**: A list of features for the Minimum Viable Product.
 1. Changing Browser prompts(different pages that switch out and present new information as the user/player selects different options)
 2. animated and moving game prompts that test the users reflexes
 3. wide range of trivia categories presented along with both true/false questions and multiple choice.  
-4. A Count-down clock will be displayed at the bottom of the screen while the user answers questions.
-5. A set of Data that provides the questions/answers
-6. Feature that keep track of score and store the results.
-7. An end of the game prompt that tells the user if they have won.
-- **Post-MVP**: A list of additional/advanced features you would like to include in your app after you have met MVP.
+4. A set of Data that provides the questions/answers
+5. Feature that keep track of score and store the results.
+6. An end of the game prompt that tells the user if they have won.
+- **Post-MVP**: A list of additional/advanced features to include in the app after MVP.
 1. Multiplayer option to allow two or more players to compete
-2. Multiple rounds to allow for extended game-play.
-3. The game should be able to keep track of score between multiple players
+2. Timer/Count-down clock for each question
+3. Provide ability for the user to choose category.
 4. Add additional trivia API that provides more questions and categories.
 - **Goals**: What you plan to accomplish for each day of the project week.
 
@@ -110,15 +109,15 @@ https://wireframe.cc/pro/pp/c0c8def99341931
 https://wireframe.cc/pro/pp/170d93ded341939
 
 
-## **Timeframes**: How long you anticipate spending on each area of development. Be sure to consider how many hours a day you plan to be coding and how many days you have available until presentation day.
+## **Timeframes**:
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Page Layout | H | 2hrs|  |  |
-| Working with API | H | 4hrs| | |
-| JavaScript | H | 12hrs|  |  |
-| CSS | H | 6hrs|  |  |
-| HTML | H | 2hrs|  |  |
+| Page Layout | H | 2hrs| 2hrs | 2.5hrs |
+| Working with API | H | 4hrs| 6hrs | 6hrs |
+| JavaScript | H | 12hrs| 16hrs | 16hrs |
+| CSS | H | 6hrs| 8hrs | 9hrs |
+| HTML | H | 2hrs| 2hrs | 2hrs |
 
 
 ## Code Snippet
