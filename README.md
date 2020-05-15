@@ -1,4 +1,4 @@
-# Trivia-Levels
+# Snag That Question
 
 - **App Title**: Snag That Question
 - **App Description**: Time Trial Trivia is an interactive trivia game that forces the user to answer questions of various difficult levels.  The user must test their reflexes to click on the moving target object labeled with the difficulty level of the question. The first target/question labeled "EASY" will flash across the screen quickly, being that it is the most desired question for the user/player to answer.  If the user cannot catch and click the object within the short and immediate time frame presented, the user is presented with a medium or hard question.  The user does not have control over which category they can choose. Full rounds consist of 7 question.  If the user does not have a score over 50%, they lose.     
