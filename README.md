@@ -149,5 +149,7 @@ https://wireframe.cc/pro/pp/170d93ded341939
    }
  }
  ```
+## Change Log
 
+The original plan to include a timer for each question was deferred.  Including the interactive animation and placing it in between each question took up more time than what was originally expected.  The "Select Category" option as a dropdown menu was also set aside to save time.   
 
