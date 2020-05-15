@@ -31,35 +31,22 @@ function shuffle(arr) {
 
 async function getData() {
   let trivia = await axios.get(`https://opentdb.com/api.php?amount=7&type=multiple`)
-  // console.log(trivia)
   data = trivia.data.results
-  // setTimeout(playGame, 2500)
 console.log(data)
 }
 
-// This is New-------------------------------------------------
 async function getEasyData() {
   let easyTrivia = await axios.get(`https://opentdb.com/api.php?amount=7&difficulty=easy&type=multiple`)
   easyData = easyTrivia.data.results
-  // setTimeout(playGame, 2500)
 console.log(easyData)
 }
 
-
-
-
-//-------------------------------------------------------------
-
-// let difficulty = ['hard', 'medium', 'easy'] // maybe take this out
-let container = document.querySelector('.container') //perhaps make this global
+let container = document.querySelector('.container') 
 let response = document.querySelector('.response')
 let flyer = document.querySelector('.flying')
 
-async function playGame() { //see how placing index as parameter changes things, consider retrying difficult as parameter too
-  // difficulty = ['hard', 'medium', 'easy']  
+async function playGame() {  
   if (easy === true) {
-
-  
     let correctAnswer = easyData[index].correct_answer
     let wrongAnswer1 = easyData[index].incorrect_answers[0]
     let wrongAnswer2 = easyData[index].incorrect_answers[1]
@@ -71,7 +58,6 @@ async function playGame() { //see how placing index as parameter changes things,
     divContainer.className = "questions"
     container.appendChild(divContainer)
     divContainer.innerHTML = `<h1 class="trivia-question">${easyData[index].question}</h1><p class="results">${setOfOptions[0]}</p><p class="results">${setOfOptions[1]}</p><p class="results">${setOfOptions[2]}</p><p class="results">${setOfOptions[3]}</p>`
-    //might have to label class with your <p>'s
     let selectOptions = document.querySelectorAll('p')
     selectOptions.forEach(option => {
       option.addEventListener('click', (e) => {
@@ -105,13 +91,10 @@ async function playGame() { //see how placing index as parameter changes things,
   })
 })
 }
-  
-  
 index += 1
 easy = false
 }
- 
-
+  
 let restartButton = document.querySelector('.restart') 
 restartButton.addEventListener('click', function () {
   window.location.reload()
@@ -126,75 +109,50 @@ button.addEventListener('click', function (e) {
   getData()
   getEasyData()
   easyButton()
-  //decideQuestion()
-  //getData() //consider removing this temporarily
 })
 
 function easyButton() {
   let flyZone = document.createElement('div')
-flyZone.classList.add('flying')
-// console.log(flyZone)
-let pTag = document.createElement('p')
-// pTag.className = 'movingEl'
-flyZone.classList.add('movingEl','animate__animated', 'animate__bounceInLeft', 'animate__bounceOutRight', 'animate__slower', 'animate__repeat-1')
-// console.log(pTag)
-pTag.innerHTML = "EASY"
+  flyZone.classList.add('flying')
+  let pTag = document.createElement('p')
+  flyZone.classList.add('movingEl','animate__animated', 'animate__bounceInLeft', 'animate__bounceOutRight', 'animate__slower', 'animate__repeat-1')
+  pTag.innerHTML = "EASY"
   flyZone.appendChild(pTag)
- document.querySelector('.view-page').append(flyZone) 
-  flyZone.addEventListener('click', () => {
-  easy = true
-})
-  setTimeout(() => {
-    playGame()
-  flyZone.remove()
-  }, 2000)
-}
 
+  document.querySelector('.view-page').append(flyZone) 
+   flyZone.addEventListener('click', () => {
+   easy = true
+ })
+   setTimeout(() => {
+     playGame()
+   flyZone.remove()
+   }, 2000)
+ }
 
-function selectedChoice(correctAnswer, usersChoice) {
-  if (usersChoice === correctAnswer) {
-    userScore += 1
-    let choice = document.createElement('h1')
-    choice.classList.add('remove')
-    choice.innerHTML = 'Right Answer'
-    response.appendChild(choice)
-  } else {
-    let wrongChoice = document.createElement('h1')
-    wrongChoice.innerHTML = `Wrong Answer, correct answer was ${correctAnswer}`
-    wrongChoice.classList.add('remove')
-    response.appendChild(wrongChoice)
-  }
+ function selectedChoice(correctAnswer, usersChoice) {
+   if (usersChoice === correctAnswer) {
+     userScore += 1
+     let choice = document.createElement('h1')
+     choice.classList.add('remove')
+     choice.innerHTML = 'Right Answer'
+     response.appendChild(choice)
+   } else {
+     let wrongChoice = document.createElement('h1')
+     wrongChoice.innerHTML = `Wrong Answer, correct answer was ${correctAnswer}`
+     wrongChoice.classList.add('remove')
+     response.appendChild(wrongChoice)
+   }
+ 
+   if (index > 6) {
+     if (userScore >= 4) {
+       let youWin = document.createElement('h1')
+       youWin.innerHTML = 'Congrats You Win'
+       response.appendChild(youWin)
+     } else {
+       let youWin = document.createElement('h1')
+       youWin.innerHTML = 'Not enough to Win, under 50%'
+       response.appendChild(youWin)
+     }
+   }
+ }
 
-  if (index > 6) {
-    if (userScore >= 4) {
-      let youWin = document.createElement('h1')
-      youWin.innerHTML = 'Congrats You Win'
-      response.appendChild(youWin)
-    } else {
-      let youWin = document.createElement('h1')
-      youWin.innerHTML = 'Not enough to Win, under 50%'
-      response.appendChild(youWin)
-    }
-  }
-}
-
-
-// From this point on, we will attempt post mvp code------------------------------------
-
-
-
-
-
-
-//   movingEl.classList.add('animate__animated', 'animate__bounceInLeft', 'animate__bounceOutRight', 'animate__slower', 'animate__repeat-1')
-// movingEl.innerHTML = "EASY"
-
-// movingEl.addEventListener('click', removeAnimation)
-
-// function removeAnimation() {
-//   let removal = document.querySelector('.movingEl')
-//   removal.remove()
-// }
-//----------------------------------------------------------------------------------------------------
-
-    

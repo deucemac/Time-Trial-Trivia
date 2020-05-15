@@ -102,7 +102,7 @@ https://wireframe.cc/pro/pp/c0c8def99341931
 |May 9-10| Wireframes / Priority Matrix / Timeframes | 
 |May 11| Essential design layout of the HTML and CSS(buttons, backgrounds) | 
 |May 12| DOM Manipulation & adding elements through JS | 
-|May 13| adding the score response and restart promp | 
+|May 13| adding the score response and restart prompt | 
 |May 14| complete all necessary items for MVP | 
 |May 15| Present the project | 
 ## Priority Matrix
@@ -121,9 +121,33 @@ https://wireframe.cc/pro/pp/170d93ded341939
 
 
 ## Code Snippet
-axios.get('https://opentdb.com/api.php?amount=10&category=23')
-  
-  .then((res) => {
-  console.log(res)
-  })
+```
+ function selectedChoice(correctAnswer, usersChoice) {
+   if (usersChoice === correctAnswer) {
+     userScore += 1
+     let choice = document.createElement('h1')
+     choice.classList.add('remove')
+     choice.innerHTML = 'Right Answer'
+     response.appendChild(choice)
+   } else {
+     let wrongChoice = document.createElement('h1')
+     wrongChoice.innerHTML = `Wrong Answer, correct answer was ${correctAnswer}`
+     wrongChoice.classList.add('remove')
+     response.appendChild(wrongChoice)
+   }
+ 
+   if (index > 6) {
+     if (userScore >= 4) {
+       let youWin = document.createElement('h1')
+       youWin.innerHTML = 'Congrats You Win'
+       response.appendChild(youWin)
+     } else {
+       let youWin = document.createElement('h1')
+       youWin.innerHTML = 'Not enough to Win, under 50%'
+       response.appendChild(youWin)
+     }
+   }
+ }
+ ```
+
 
